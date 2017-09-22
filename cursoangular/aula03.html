@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Aula 03 - Introdução ao JavaScript</title>
+        <meta charset="utf-8">
+        <script>
+            var msg = "teste do console";
+            console.log("Utilizando o Console: " + msg);
+
+            var joao = {
+                nome: "João da Silva",
+                idade: 25,
+                status: false
+            }
+
+            var maria = {
+                nome: "Maria da Silva",
+                idade: 25,
+                status: true
+            }
+
+            var pessoas = [];
+            pessoas.push(joao);
+            pessoas.push(maria);
+
+            console.log(pessoas);
+
+            pessoas.forEach(function(element) {
+                console.log(element);
+                var status = element.status ? "ativo" : "bloqueado"; 
+                console.log("O usuário " + element.nome + " está " + status + ".");
+                document.write("<p>Nome do usuário: " + element.nome + "</p>");
+            }, this);
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
