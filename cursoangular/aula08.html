@@ -1,0 +1,63 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 08</title>
+        <meta charset="utf-8">
+        <style>
+            input.ng-invalid.ng-touched {
+                background: red;
+            }
+            input.ng-valid.ng-touched {
+                background: green;
+            }
+        </style>
+    </head>
+    <body ng-controller="aula08Controller">
+        <form name="frm" ng-submit="addPessoa(pessoa)" novalidate>
+            <p>
+                Nome: <input type="text" name="nome" ng-model="pessoa.nome" required>
+                <div ng-show="frm.$submitted || frm.nome.$touched">
+                    <div ng-show="frm.nome.$error.required">
+                        O campo nome deve ser preenchido.
+                    </div>
+                </div>
+            </p>
+            <p>
+                E-mail: <input type="email" name="email" ng-model="pessoa.email" required>
+                <div ng-show="frm.$submitted || frm.email.$touched">
+                    <div ng-show="frm.email.$error.required">
+                        O campo e-mail deve ser preenchido.
+                    </div>
+                    <div ng-show="frm.email.$error.email">
+                        O campo e-mail deve ser conter um endereço válido.
+                    </div>
+                </div>
+            </p>
+            <p>
+                Sexo: <input type="radio" value="m"ng-model="pessoa.sexo">Masculino<input type="radio" value="f" ng-model="pessoa.sexo">Feminino
+            </p>
+            <p>
+                Estado: 
+                <select ng-model="pessoa.estado">
+                    <option ng-repeat="estado in estados" value="{{estado}}" ng-selected="estado==pessoa.estado">{{estado}}</option>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Salvar" ng-disabled="frm.$invalid">
+                <input type="button" value="Reset">
+            </p>
+
+            <pre>
+                {{pessoa | json}}
+            </pre>
+            <pre>
+                {{pessoas | json}}
+            </pre>
+        </form>
+        
+
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/app.module.js"></script>
+        <!-- controllers -->
+        <script src="js/aula08.controller.js"></script>
+    </body>
+</html>
