@@ -1,0 +1,25 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 09</title>
+    </head>
+    <body>
+        <div ng-controller="aula09Controller">
+            Controller 1
+
+            {{pessoa.nome}} ({{pessoa.idade}})
+        </div>
+
+        <div ng-controller="aula09Controller2">
+            Controller 2
+        </div>
+        
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/app.module.js"></script>
+
+        <script src="js/aula09.service.js"></script>
+        <script src="js/aula09.pessoa.factory.js"></script>
+        <!-- controllers -->
+        <script src="js/aula07.controller.js"></script>
+        <script src="js/aula09.controller.js"></script>
+    </body>
+</html>
