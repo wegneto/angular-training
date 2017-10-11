@@ -1,0 +1,32 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 11</title>
+        <base href="/angular-training/cursoangular/">
+    </head>
+    <body>
+        <div ng-controller="Aula11Controller">
+            <ul>
+                <li>
+                    <a href="inicio" >Inicial</a>
+                    <a href="Pagina1">Pagina 1</a>
+                    <a href="Pagina2/1">Pagina 2</a>
+                </li>
+            </ul>
+
+            <p>Header</p>
+
+            <div ng-view>
+
+            </div>
+            
+            <p>Footer</p>
+            
+        </div>
+        
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/angular/angular-route.min.js"></script>
+
+        <!-- controllers -->
+        <script src="js/aula11.controller.js"></script>
+    </body>
+</html>
