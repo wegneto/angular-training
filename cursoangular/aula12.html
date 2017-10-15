@@ -1,0 +1,64 @@
+<html ng-app="app">
+
+<head>
+    <title>Curso AngularJS - Exemplo 12</title>
+
+    <script src="js/angular/angular.min.js"></script>
+
+    <style>
+        [ng\:cloak],
+        [ng-cloak],
+        [data-ng-cloak],
+        [x-ng-cloak],
+        .ng-cloak,
+        .x-ng-cloak {
+            display: none !important;
+        }
+
+        .classNgClass {
+            font-size: 50px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="Aula12Controller">
+        <h1>ngShow e ngHide</h1>
+
+        <div ng-show="show">Exibido quando show == true</div>
+        <div ng-hide="show">Exibido quando show == false</div>
+
+        <input type="checkbox" ng-model="show">Show
+
+        <h1>Elemento A</h1>
+        <a href="">Abrir nova pagina</a>
+
+        <h1>ngBindhtml</h1>
+        <p>{{variavelHTML}}</p>
+        <p ng-bind-html="variavelHTML"></p>
+
+        <h1>ngClass</h1>
+        <button type="button" ng-click="minhaClass = 'classNgClass'">Add class</button>
+        <button type="button" ng-click="minhaClass = ''">Remove class</button>
+        <div ng-class="minhaClass">
+            hello world!
+        </div>
+
+        <h1>ngCloak</h1>
+        <p ng-cloak>{{variavelCloak}}</p>
+
+        <h1>ngSrc</h1>
+        <img ng-src="images/{{minhaImagem}}">
+        <button type="button" ng-click="minhaImagem = 'imagem1.png'">Imagem 1</button>
+        <button type="button" ng-click="minhaImagem = 'imagem2.png'">Imagem 2</button>
+    </div>
+
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/angular/angular-sanitize.min.js"></script>
+
+    <!-- controllers -->
+    <script src="js/aula12.controller.js"></script>
+</body>
+
+</html>
