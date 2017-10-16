@@ -1,0 +1,18 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 15</title>
+    </head>
+    <body>
+        <div ng-controller="Aula15Controller">
+            <button type="button" ng-click="carregaLivros()">Carregar todos os livros</button>
+            <button type="button" ng-click="salvarLivro()">Salvar Livro</button>
+            <button type="button" ng-click="getLivro(1)">Carregar Livro</button>
+        </div>
+        
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/angular/angular-resource.min.js"></script>
+
+        <!-- controllers -->
+        <script src="js/aula15.controller.js"></script>
+    </body>
+</html>
