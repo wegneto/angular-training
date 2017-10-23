@@ -1,0 +1,69 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 17</title>
+        <style>
+            .esconder {
+                padding: 10px;
+                border: 1px solid black;
+                background: white;
+            }
+
+            .esconder {
+                -moz-transition: all linear 1s;
+                -webkit-transition: all linear 1s;
+                transition: all linear 1s;
+            }
+
+            .esconder.ng-hide {
+                opacity: 0;
+            }
+
+            .esconder.ng-show {
+                opacity: 1;
+            }
+
+            .repetir-lista {
+                padding: 10px;
+                border: 1px solid black;
+                background: white;
+            }
+
+            .repetir-lista.ng-enter {
+                -moz-transition: 2s linear all;
+                -webkit-transition: 2s linear all;
+                transition: 2s linear all;
+                opacity: 0;
+                background: green;
+            }
+
+            .repetir-lista.ng-enter-active {
+                opacity: 1;
+                background: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div ng-controller="Aula17Controller" ng-init="mostra=true;itemadd = 0">
+            <input type="checkbox" ng-model="mostra">
+
+            <div class="esconder" ng-show="mostra">Teste 1</div>
+
+            <hr>
+
+            <input type="text" ng-model="itemadd">
+            <button type="button" ng-click="addItem()">ADD</button>
+
+            <hr>
+
+            <div class="repetir-lista" ng-repeat="item in itens">
+                {{item}}
+            </div>
+
+        </div>
+        
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/angular/angular-animate.min.js"></script>
+        <!-- controllers -->
+        <script src="js/aula17.controller.js"></script>
+    </body>
+</html>
