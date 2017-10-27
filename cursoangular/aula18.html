@@ -1,0 +1,35 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 18</title>
+    </head>
+    <body>
+        <div ng-controller="Aula18Controller">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            
+            <p><b>$location.protocol: </b> {{$location.protocol()}}</p>
+            <p><b>$location.host: </b> {{$location.host()}}</p>
+            <p><b>$location.port: </b> {{$location.port()}}</p>
+            <p><b>$location.path: </b> {{$location.path()}}</p>
+            <p><b>$location.search: </b> {{$location.search() | json}}</p>
+            <p><b>$location.search.id: </b> {{$location.search().id}}</p>
+            <p><b>$location.hash: </b> {{$location.hash()}}</p>
+
+            <a href="#" ng-click="setId(10)">Link</a>
+            <a href="#" ng-click="setId(11)">Link</a>
+            <a href="#" ng-click="setId(12)">Link</a>
+            <a href="#" ng-click="setId(13)">Link</a>
+            <a href="#" ng-click="setId(14)">Link</a>
+            <a href="#" ng-click="setId(15)">Link</a>
+        </div>
+        
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/app.module.js"></script>
+
+        <!-- controllers -->
+        <script src="js/aula18.controller.js"></script>
+    </body>
+</html>
