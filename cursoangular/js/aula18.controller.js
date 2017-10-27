@@ -6,9 +6,13 @@ app.controller('Aula18Controller', function ($scope, $location) {
         $location.search({id: p_id});
     }
 
+    $scope.$watch('$location.search().id', function(id) {
+        console.log("mudou o valor do id para: " + id);
+    });
+
 }).config(function($locationProvider) {
     $locationProvider.html5Mode({
-        enable: true,
+        enabled: true,
         requireBase: false
     }).hashPrefix('#');
 });
