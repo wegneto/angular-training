@@ -1,0 +1,23 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 20</title>
+    </head>
+    <body>
+        <div ng-controller="Aula20Controller">
+            <h1 translate="TITULO"></h1>
+            <p translate="PARAGRAFO1"></p>
+            <button type="button" translate="BTN_OK"></button>
+            <button type="button" translate="BTN_CANCEL"></button>
+
+            <hr>
+
+            <button type="button" translate="BTN_EN" ng-click="setIdioma('en')"></button>
+            <button type="button" translate="BTN_PT_BR" ng-click="setIdioma('pt-br')"></button>
+        </div>
+        
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/angular/angular-translate.min.js"></script>
+        <!-- controllers -->
+        <script src="js/aula20.controller.js"></script>
+    </body>
+</html>
