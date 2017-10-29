@@ -1,0 +1,23 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 21</title>
+    </head>
+    <body>
+        <div ng-controller="Aula21Controller">
+            <input type="file" nv-file-select uploader="uploader" multiple>
+            <hr>
+            <ul>
+                <li ng-repeat="item in uploader.queue">
+                    Nome: <span ng-bind="item.file.name"></span>
+                    <br>
+                    <button type="button" ng-click="item.upload()">Upload item</button>
+                </li>
+            </ul>
+        </div>
+        
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/angular/angular-file-upload.min.js"></script>
+        <!-- controllers -->
+        <script src="js/aula21.controller.js"></script>
+    </body>
+</html>
