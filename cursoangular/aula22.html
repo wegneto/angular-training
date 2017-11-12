@@ -1,13 +1,25 @@
 <html ng-app="app">
     <head>
         <title>Curso AngularJS - Exemplo 22</title>
+        <style>
+            .ui-match {
+                background: red;
+                color: white;
+            }
+        </style>
     </head>
     <body>
-        <div ng-controller="Aula22Controller">
-            
+        <div ng-controller="Aula22Controller" ng-init="search='';var1='';var2=''">
+            <input type="search" ng-model="search">
+            <div ng-bind-html="text | highlight:search"></div>
+            <hr>
+            <input ng-model="var1" ui-mask="{{maskcpf}}">
+            <input ng-model="var2" ui-mask="{{maskphone}}">
         </div>
         
         <script src="js/angular/angular.min.js"></script>
+        <script src="js/angular/angular-sanitize.min.js"></script>
+        <script src="js/angular/ui-utils.min.js"></script>
         <!-- controllers -->
         <script src="js/aula22.controller.js"></script>
     </body>
