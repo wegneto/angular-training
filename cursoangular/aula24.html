@@ -1,19 +1,31 @@
 <html ng-app="app">
     <head>
         <title>Curso AngularJS - Exemplo 24</title>
+        <meta charset="utf-8">
+        
         <style>
-            
+            .angular-google-map-container {
+                height: 400px;
+            }
         </style>
     </head>
     <body>
-        <div ng-controller="Aula24Controller" ng-init="campo=''">
-            Aula 24
-        </div>
         
+        <div ng-controller="Aula24Controller">
+            <ui-gmap-google-map center="map.center" zoom="map.zoom">
+                <ui-gmap-marker idKey="marker.id" coords="marker.coords"></ui-gmap-marker>
+            </ui-gmap-google-map>
+        </div>
+    
         <script src="js/angular/angular.min.js"></script>
-        <script src="js/angular/angular-sanitize.min.js"></script>
-        <script src="js/angular/ui-utils.min.js"></script>
-        <!-- controllers -->
+        <script src="js/angular/lodash.js"></script>
+        <script src="js/angular/angular-simple-logger.js"></script>
+        <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+        <script src="js/angular/angular-google-maps.min.js"></script>
+        
         <script src="js/aula24.controller.js"></script>
+        
+        
+        
     </body>
 </html>
