@@ -1,0 +1,34 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 26</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div ng-controller="Aula26Controller">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1>Accordion</h1>
+                        <accordion>
+                            <accordion-group heading="Titulo 1">
+                                <p>Conteudo 1</p>
+                            </accordion-group>
+                            <accordion-group heading="Titulo 2">
+                                <p>Conteudo 2</p>
+                            </accordion-group>
+                            <accordion-group ng-repeat="grupo in grupos" heading="{{grupo.heading}}">
+                                {{grupo.content}}
+                            </accordion-group>
+                        </accordion>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="js/angular/angular.old.min.js"></script>
+        <script src="js/angular/ui-bootstrap-tpls-0.13.0.min.js"></script>
+        
+        <script src="js/aula26.controller.js"></script>
+    </body>
+</html>
