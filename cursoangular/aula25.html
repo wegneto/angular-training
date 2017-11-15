@@ -1,0 +1,36 @@
+<html ng-app="app">
+    <head>
+        <title>Curso AngularJS - Exemplo 23</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="js/angular/select.min.css">
+    </head>
+    <body>
+        <div ng-controller="Aula25Controller">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs.12">
+
+                        <h1>ui.select</h1>
+
+                        <ui-select ng-model="paisSelecionado.selected" theme="bootstrap">
+                            <ui-select-match placeholder="Digite o nome de um pais:">
+                                {{paisSelecionado.selected.name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="pais in paises | filter:$select.search">
+                                {{pais.name}} / {{pais.code}}
+                            </ui-select-choices>
+                        </ui-select>
+
+                        <h3>Objeto selecionado: {{paisSelecionado.selected}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="js/angular/angular.old.min.js"></script>
+        <script src="js/angular/select.min.js"></script>
+        
+        <script src="js/aula25.controller.js"></script>
+    </body>
+</html>
