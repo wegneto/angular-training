@@ -1,23 +1,37 @@
-var app = angular.module('app', ['ui.mask']);
+var app = angular.module('app', ['ui.mask','angular-loading-bar']);
 
 app.controller('painelInicialController', function($scope, $http) {
     console.log("### painelInicialController begin ###");
     $scope.showCadastro = false;
     $scope.noticia = objNoticia();
-
+    $scope.noticias = {};
     $scope.abreCadastroNoticia = function() {
         $scope.showCadastro = true;
     }
 
+    $scope.listarNoticias = function() {
+        $http.get("../api/listarNoticias")
+            .success(function(data) {
+                $scope.noticias = data.noticias;
+            })
+            .error(function() {
+                alert('Erro de sistema.');
+            });
+    };
+
     $scope.cadastrarNovaNotica = function() {
-        console.log($scope.noticia);
         $http
             .post('../api/cadastrarNovaNoticia', $scope.noticia)
             .success(function(data) {
                 if(!data.erro) {
-                    alert('Noticia cadastrada com sucesso.');
+                    $.gritter.add({
+                        title: "Sucesso!",
+                        text: "Notícia cadastrada com sucesso",
+                        class_name: "gritter"
+                    });
                     $scope.noticia = objNoticia();
                     $scope.showCadastro = false;
+                    $scope.listarNoticias();
                 } else {
                     alert('Falha ao cadastrar noticia.');
                 }
@@ -26,6 +40,8 @@ app.controller('painelInicialController', function($scope, $http) {
                 alert('Erro de sistema.');
             });
     };
+
+    $scope.listarNoticias();
 
     console.log("### painelInicialController end ###");
 });

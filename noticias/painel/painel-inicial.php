@@ -6,14 +6,16 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
     <head>
         <title>Painel Administrativo - Login</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../js/angular/loading-bar.min.css">
+        <link rel="stylesheet" href="../js/jquery/jquery.gritter.css">
         <link rel="stylesheet" href="../css/style.css">
     </head>
-    <body ng-app="app">
+    <body>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -81,10 +83,49 @@
                 </form>
             </div>
             <!-- /form -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Título</th>
+                                    <th>Bloquear</th>
+                                    <th width="120">-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="noticia in noticias">
+                                    <td>{{noticia.datanoticia}}</td>
+                                    <td>{{noticia.titulo}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-default">
+                                            Bloquear
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-pencil"></span> 
+                                        </button>
+                                        <button type="button" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash"></span> 
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
         
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="../js/jquery/jquery.gritter.min.js"></script>
         <script src="../js/angular/angular.min.js"></script>
-        <script src="../js/angular/ui-utils.min.js"></script>
+        <script src="../js/angular/ui-utils.min.js"></script>        
+        <script src="../js/angular/loading-bar.min.js"></script>
         <script src="../js/painel-inicial.controller.js"></script>
     </body>
 </html>

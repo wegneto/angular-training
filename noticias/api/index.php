@@ -102,7 +102,6 @@ $app->get(
 );
 
 $app->post('/cadastrarNovaNoticia', 'auth', function () use ($app, $db) {
-        
         $formData = json_decode($app->request()->getBody());
         $titulo = (isset($formData->titulo)) ? $formData->titulo : "";
 	    $descricao = (isset($formData->descricao)) ? $formData->descricao : "";
@@ -124,12 +123,7 @@ $app->post('/cadastrarNovaNoticia', 'auth', function () use ($app, $db) {
         $consulta->bindParam(':DATA', $data);
     
         if($consulta->execute()){
-            $retorno = array(
-                'erro' => false,
-                'texto' => $texto
-            );
-
-            echo json_encode($retorno);
+            echo json_encode(array("erro"=>false));
         } else {
             echo json_encode(array("erro"=>true));
         }
@@ -183,17 +177,17 @@ $app->post('/alterarNoticia/:idnoticia', 'auth', function ($idnoticia) use ($app
 $app->get('/listarNoticias', 'auth', function () use ($app, $db) {
             
         $consulta = $db->con()->prepare("SELECT
-                                            idnoticia,
-                                            noticiatitulo,
-                                            noticiadescricao,
-                                            noticiatexto,
-                                            noticiastatus,
-                                            DATE_FORMAT(noticiadata,'%d/%m/%Y') AS datanoticia
+                                            id,
+                                            titulo,
+                                            descricao,
+                                            texto,
+                                            status,
+                                            DATE_FORMAT(data,'%d/%m/%Y') AS datanoticia
                                         FROM
                                             noticia
                                         ORDER BY
-                                            noticiadata DESC,
-                                            noticiatitulo ASC
+                                            data DESC,
+                                            titulo ASC
                                         ");
         $consulta->execute();
         $noticias = $consulta->fetchAll(PDO::FETCH_ASSOC);
