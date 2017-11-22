@@ -103,13 +103,13 @@ $app->get(
 
 $app->post('/cadastrarNovaNoticia', 'auth', function () use ($app, $db) {
         
-        $data = json_decode($app->request()->getBody());
-        $noticiatitulo = (isset($data->noticiatitulo)) ? $data->noticiatitulo : "";
-	    $noticiadescricao = (isset($data->noticiadescricao)) ? $data->noticiadescricao : "";
-        $noticiadata = (isset($data->noticiadata)) ? $data->noticiadata : "";
-        $noticiatexto = (isset($data->noticiatexto)) ? $data->noticiatexto : "";
+        $formData = json_decode($app->request()->getBody());
+        $titulo = (isset($formData->titulo)) ? $formData->titulo : "";
+	    $descricao = (isset($formData->descricao)) ? $formData->descricao : "";
+        $data = (isset($formData->data)) ? $formData->data : "";
+        $texto = (isset($formData->texto)) ? $formData->texto : "";
         
-        $data_tmp = explode('/',$noticiadata);
+        $data_tmp = explode('/',$data);
     
         if(checkdate($data_tmp[1], $data_tmp[0], $data_tmp[2])){
             $data = sprintf('%s-%s-%s', $data_tmp[2], $data_tmp[1], $data_tmp[0]);
@@ -117,14 +117,19 @@ $app->post('/cadastrarNovaNoticia', 'auth', function () use ($app, $db) {
             $data = NULL; 
         }
         
-        $consulta = $db->con()->prepare('INSERT INTO noticia(noticiatitulo, noticiadescricao, noticiatexto, noticiadata) VALUES (:NOTICIATITULO, :NOTICIADESCRICAO, :NOTICIATEXTO, :NOTICIADATA)');
-        $consulta->bindParam(':NOTICIATITULO', $noticiatitulo);
-        $consulta->bindParam(':NOTICIADESCRICAO', $noticiadescricao);
-        $consulta->bindParam(':NOTICIATEXTO', $noticiatexto);
-        $consulta->bindParam(':NOTICIADATA', $data);
+        $consulta = $db->con()->prepare('INSERT INTO noticia(titulo, descricao, texto, data) VALUES (:TITULO, :DESCRICAO, :TEXTO, :DATA)');
+        $consulta->bindParam(':TITULO', $titulo);
+        $consulta->bindParam(':DESCRICAO', $descricao);
+        $consulta->bindParam(':TEXTO', $texto);
+        $consulta->bindParam(':DATA', $data);
     
         if($consulta->execute()){
-            echo json_encode(array("erro"=>false));
+            $retorno = array(
+                'erro' => false,
+                'texto' => $texto
+            );
+
+            echo json_encode($retorno);
         } else {
             echo json_encode(array("erro"=>true));
         }
