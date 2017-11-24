@@ -200,20 +200,20 @@ $app->get('/getnoticia/:idnoticia', 'auth', function ($idnoticia) use ($app, $db
         $idnoticia = (int)$idnoticia;
     
         $consulta = $db->con()->prepare("SELECT
-                                            idnoticia,
-                                            noticiatitulo,
-                                            noticiadescricao,
-                                            noticiatexto,
-                                            DATE_FORMAT(noticiadata,'%d/%m/%Y') AS noticiadata
+                                            id,
+                                            titulo,
+                                            descricao,
+                                            texto,
+                                            DATE_FORMAT(data,'%d/%m/%Y') AS noticiadata
                                         FROM
                                             noticia
                                         WHERE
-                                            idnoticia = :IDNOTICIA                                            
+                                            id = :ID                                            
                                         ORDER BY
                                             noticiadata DESC,
-                                            noticiatitulo ASC
+                                            titulo ASC
                                         ");
-        $consulta->bindParam(':IDNOTICIA', $idnoticia);
+        $consulta->bindParam(':ID', $idnoticia);
         $consulta->execute();
         $noticias = $consulta->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode(array("noticia"=>$noticias[0]));
