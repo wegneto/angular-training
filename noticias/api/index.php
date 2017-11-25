@@ -102,6 +102,7 @@ $app->get(
 );
 
 $app->post('/cadastrarNovaNoticia', 'auth', function () use ($app, $db) {
+        sleep(5);
         $formData = json_decode($app->request()->getBody());
         $titulo = (isset($formData->titulo)) ? $formData->titulo : "";
 	    $descricao = (isset($formData->descricao)) ? $formData->descricao : "";
@@ -137,10 +138,10 @@ $app->post('/alterarNoticia/:idnoticia', 'auth', function ($idnoticia) use ($app
     
         $idnoticia = (int)$idnoticia;
     
-        $noticiatitulo = (isset($data->noticiatitulo)) ? $data->noticiatitulo : "";
-	    $noticiadescricao = (isset($data->noticiadescricao)) ? $data->noticiadescricao : "";
-        $noticiadata = (isset($data->noticiadata)) ? $data->noticiadata : "";
-        $noticiatexto = (isset($data->noticiatexto)) ? $data->noticiatexto : "";
+        $noticiatitulo = (isset($data->titulo)) ? $data->titulo : "";
+	    $noticiadescricao = (isset($data->descricao)) ? $data->descricao : "";
+        $noticiadata = (isset($data->data)) ? $data->data : "";
+        $noticiatexto = (isset($data->texto)) ? $data->texto : "";
         
         $data_tmp = explode('/',$noticiadata);
     
@@ -152,12 +153,12 @@ $app->post('/alterarNoticia/:idnoticia', 'auth', function ($idnoticia) use ($app
         
         $consulta = $db->con()->prepare('UPDATE noticia 
                                         SET 
-                                            noticiatitulo = :NOTICIATITULO, 
-                                            noticiadescricao = :NOTICIADESCRICAO, 
-                                            noticiatexto = :NOTICIATEXTO, 
-                                            noticiadata = :NOTICIADATA
+                                            titulo = :NOTICIATITULO, 
+                                            descricao = :NOTICIADESCRICAO, 
+                                            texto = :NOTICIATEXTO, 
+                                            data = :NOTICIADATA
                                         WHERE 
-                                            idnoticia = :IDNOTICIA');
+                                            id = :IDNOTICIA');
     
         $consulta->bindParam(':NOTICIATITULO', $noticiatitulo);
         $consulta->bindParam(':NOTICIADESCRICAO', $noticiadescricao);
