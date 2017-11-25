@@ -6,6 +6,7 @@ app.controller('painelInicialController', function($scope, $http) {
     $scope.noticia = objNoticia();
     $scope.noticias = {};
     $scope.abreCadastroNoticia = function() {
+        $scope.noticia = objNoticia();
         $scope.showCadastro = true;
     }
 
@@ -40,6 +41,47 @@ app.controller('painelInicialController', function($scope, $http) {
                 alert('Erro de sistema.');
             });
     };
+
+    $scope.alterarNotica = function() {
+        $http
+            .post('../api/alterarNoticia/'+$scope.noticia.id, $scope.noticia)
+            .success(function(data) {
+                if(!data.erro) {
+                    $.gritter.add({
+                        title: "Sucesso!",
+                        text: "Notícia alterada com sucesso",
+                        class_name: "gritter"
+                    });
+                    $scope.noticia = objNoticia();
+                    $scope.showCadastro = false;
+                    $scope.listarNoticias();
+                } else {
+                    alert('Falha ao alterar noticia.');
+                }
+            })
+            .error(function() {
+                alert('Erro de sistema.');
+            });
+    };
+
+    $scope.submitForm = function() {
+        if ($scope.noticia.id == -1) {
+            $scope.cadastrarNovaNotica();
+        } else  {
+            $scope.alterarNotica();
+        }
+    }
+
+    $scope.getNoticia = function(id) {
+        $http.get("../api/getnoticia/" + id)
+            .success(function(data) {
+                $scope.noticia = data.noticia;
+                $scope.showCadastro = true;
+            })
+            .error(function() {
+                alert('Erro de sistema.');
+            });
+    }
 
     $scope.listarNoticias();
 

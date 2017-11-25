@@ -102,7 +102,7 @@ $app->get(
 );
 
 $app->post('/cadastrarNovaNoticia', 'auth', function () use ($app, $db) {
-        sleep(5);
+        sleep(2);
         $formData = json_decode($app->request()->getBody());
         $titulo = (isset($formData->titulo)) ? $formData->titulo : "";
 	    $descricao = (isset($formData->descricao)) ? $formData->descricao : "";
@@ -183,7 +183,7 @@ $app->get('/listarNoticias', 'auth', function () use ($app, $db) {
                                             descricao,
                                             texto,
                                             status,
-                                            DATE_FORMAT(data,'%d/%m/%Y') AS datanoticia
+                                            DATE_FORMAT(data,'%d/%m/%Y') AS data
                                         FROM
                                             noticia
                                         ORDER BY
@@ -205,13 +205,13 @@ $app->get('/getnoticia/:idnoticia', 'auth', function ($idnoticia) use ($app, $db
                                             titulo,
                                             descricao,
                                             texto,
-                                            DATE_FORMAT(data,'%d/%m/%Y') AS noticiadata
+                                            DATE_FORMAT(data,'%d/%m/%Y') AS data
                                         FROM
                                             noticia
                                         WHERE
                                             id = :ID                                            
                                         ORDER BY
-                                            noticiadata DESC,
+                                            data DESC,
                                             titulo ASC
                                         ");
         $consulta->bindParam(':ID', $idnoticia);
