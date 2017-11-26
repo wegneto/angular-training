@@ -94,7 +94,7 @@
                                     <th>Data</th>
                                     <th>Título</th>
                                     <th>Bloquear</th>
-                                    <th width="120">-</th>
+                                    <th width="150">-</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,6 +110,9 @@
                                         <button type="button" class="btn btn-primary" ng-click="getNoticia(noticia.id)">
                                             <span class="glyphicon glyphicon-pencil"></span> 
                                         </button>
+                                        <a href="gerenciarImagens.php?idnoticia={{noticia.id}}" class="btn btn-primary" ng-click="getNoticia(noticia.id)">
+                                            <span class="glyphicon glyphicon-upload"></span> 
+                                        </a>
                                         <button type="button" class="btn btn-danger">
                                             <span class="glyphicon glyphicon-trash"></span> 
                                         </button>
