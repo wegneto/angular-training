@@ -80,7 +80,7 @@ $app->post(
         $usuario = (isset($data->usuario)) ? $data->usuario : "";
 	    $senha   = (isset($data->senha)) ? $data->senha : "";
         
-        if($usuario=="admin" && $senha=="123456"){
+        if($usuario=="admin" && $senha=="123"){
             
             $_SESSION['logado']=true;
             
@@ -289,7 +289,8 @@ $app->get('/excluirNoticia/:idnoticia', 'auth', function ($idnoticia) use ($app,
 $app->post('/cadastrarImagem/:idnoticia', 'auth', function ($idnoticia) use ($app, $db) {
         
         if ( !empty( $_FILES ) ) {
-            $imagemtitulo = $_POST['imagemtitulo'];
+            //$imagemtitulo = $_POST['titulo'];
+            $imagemtitulo = "temp";
             $imagemarquivo = $idnoticia."_".uniqid()."_".$_FILES[ 'file' ][ 'name' ];
             $idnoticia = (int)$idnoticia;
             
@@ -297,12 +298,13 @@ $app->post('/cadastrarImagem/:idnoticia', 'auth', function ($idnoticia) use ($ap
             $uploadPath = '../upload/'.$imagemarquivo;            
             move_uploaded_file( $tempPath, $uploadPath );
             
-            $consulta = $db->con()->prepare('INSERT INTO imagem(imagemtitulo, imagemarquivo, noticia_idnoticia) VALUES (:IMAGEMTITULO, :IMAGEMARQUIVO, :IDNOTICIA)');
+            $consulta = $db->con()->prepare('INSERT INTO imagem(titulo, arquivo, id_noticia) VALUES (:IMAGEMTITULO, :IMAGEMARQUIVO, :IDNOTICIA)');
             $consulta->bindParam(':IMAGEMTITULO', $imagemtitulo);
             $consulta->bindParam(':IMAGEMARQUIVO', $imagemarquivo);
             $consulta->bindParam(':IDNOTICIA', $idnoticia);
 
             if($consulta->execute()){
+
                 echo json_encode(array("erro"=>false));
             } else {
                 echo json_encode(array("erro"=>true));

@@ -110,7 +110,7 @@
                                         <button type="button" class="btn btn-primary" ng-click="getNoticia(noticia.id)">
                                             <span class="glyphicon glyphicon-pencil"></span> 
                                         </button>
-                                        <a href="gerenciarImagens.php?idnoticia={{noticia.id}}" class="btn btn-primary" ng-click="getNoticia(noticia.id)">
+                                        <a href="gerenciar-imagens.php?idnoticia={{noticia.id}}" class="btn btn-primary" ng-click="getNoticia(noticia.id)">
                                             <span class="glyphicon glyphicon-upload"></span> 
                                         </a>
                                         <button type="button" class="btn btn-danger">
