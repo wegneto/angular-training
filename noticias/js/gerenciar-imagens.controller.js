@@ -7,6 +7,8 @@ app.controller('gerenciarImagensController', function($scope, $http, $location, 
 
     $scope.noticia = {};
 
+    $scope.imagens = {};
+
     $scope.getNoticia = function(id) {
         $http.get("../api/getnoticia/" + id)
             .success(function(data) {
@@ -18,7 +20,30 @@ app.controller('gerenciarImagensController', function($scope, $http, $location, 
             });
     };
 
+    $scope.getImagens = function(id) {
+        $http.get("../api/listarImagens/" + id)
+            .success(function(data) {
+                $scope.imagens = data.imagens;
+            })
+            .error(function() {
+                alert('Erro de sistema.');
+            });
+    };
+
+    $scope.excluirImagem = function(id) {
+        if (confirm("Confirma exclusão?")) {
+            $http.get("../api/excluirImagem/" + id)
+                .success(function(data) {
+                    $scope.getImagens($location.search().idnoticia);
+                })
+                .error(function() {
+                    alert('Erro de sistema.');
+                });
+        }
+    };
+
     $scope.getNoticia($location.search().idnoticia);
+    $scope.getImagens($location.search().idnoticia);
 
     var uploader = $scope.uploader = new FileUploader({
         url: '../api/cadastrarImagem/'+$location.search().idnoticia
@@ -31,9 +56,16 @@ app.controller('gerenciarImagensController', function($scope, $http, $location, 
         }
     });
 
+    uploader.onBeforeUploadItem = function(item) {
+        item.formData.push({
+            titulo: item.titulo
+        });
+    };
+
     uploader.onSuccessItem = function(fileItem) {
         console.log("Arquivo enviado com sucesso.");
         fileItem.remove();
+        $scope.getImagens($location.search().idnoticia);
     };
 
     uploader.onErrorItem = function(fileItem) {

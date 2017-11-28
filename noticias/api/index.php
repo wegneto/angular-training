@@ -283,14 +283,12 @@ $app->get('/excluirNoticia/:idnoticia', 'auth', function ($idnoticia) use ($app,
     }
 );
 
-
 // gerenciamento de imagens
-
 $app->post('/cadastrarImagem/:idnoticia', 'auth', function ($idnoticia) use ($app, $db) {
         
         if ( !empty( $_FILES ) ) {
-            //$imagemtitulo = $_POST['titulo'];
-            $imagemtitulo = "temp";
+            $imagemtitulo = $_POST['titulo'];
+            //$imagemtitulo = "temp";
             $imagemarquivo = $idnoticia."_".uniqid()."_".$_FILES[ 'file' ][ 'name' ];
             $idnoticia = (int)$idnoticia;
             
@@ -304,7 +302,6 @@ $app->post('/cadastrarImagem/:idnoticia', 'auth', function ($idnoticia) use ($ap
             $consulta->bindParam(':IDNOTICIA', $idnoticia);
 
             if($consulta->execute()){
-
                 echo json_encode(array("erro"=>false));
             } else {
                 echo json_encode(array("erro"=>true));
@@ -323,13 +320,13 @@ $app->get('/listarImagens/:idnoticia', 'auth', function ($idnoticia) use ($app, 
         $idnoticia = (int)$idnoticia;
     
         $consulta = $db->con()->prepare("SELECT
-                                            idimagem,
-                                            imagemtitulo,
-                                            imagemarquivo
+                                            id,
+                                            titulo,
+                                            arquivo
                                         FROM
                                             imagem
                                         WHERE
-                                            noticia_idnoticia = :IDNOTICIA                                        
+                                            id_noticia = :IDNOTICIA                                        
                                         ");
         $consulta->bindParam(':IDNOTICIA', $idnoticia);
         $consulta->execute();
@@ -345,20 +342,20 @@ $app->get('/excluirImagem/:idimagem', 'auth', function ($idimagem) use ($app, $d
         $idimagem = (int)$idimagem;
     
         $consulta = $db->con()->prepare("SELECT
-                                            imagemarquivo
+                                            arquivo
                                         FROM
                                             imagem
                                         WHERE
-                                            idimagem = :IDIMAGEM                                        
+                                            id = :IDIMAGEM                                        
                                         ");
         $consulta->bindParam(':IDIMAGEM', $idimagem);
         $consulta->execute();
     
         $imagem = $consulta->fetchAll(PDO::FETCH_ASSOC)[0];
     
-        @unlink("../upload/".$imagem['imagemarquivo']);
+        @unlink("../upload/".$imagem['arquivo']);
     
-        $consulta = $db->con()->prepare("DELETE FROM imagem WHERE idimagem = :IDIMAGEM");
+        $consulta = $db->con()->prepare("DELETE FROM imagem WHERE id = :IDIMAGEM");
         $consulta->bindParam(':IDIMAGEM', $idimagem);
         $consulta->execute();
     

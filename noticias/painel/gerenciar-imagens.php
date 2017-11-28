@@ -48,8 +48,10 @@
                         <input type="file" nv-file-select uploader="uploader" multiple>
                         <hr>
                         <ul>
-                            <li ng-repeat="item in uploader.queue">
-                                Nome: <span ng-bind="item.file.name"></span>
+                            <li ng-repeat="item in uploader.queue" >
+                                Arquivo: <span ng-bind="item.file.name"></span>
+                                <br>
+                                Título: <input type="text" ng-model="item.titulo">
                                 <br>
                                 <button type="button" ng-click="item.upload()">Upload item</button>
                             </li>
@@ -62,6 +64,18 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h3>Imagens cadastradas</h3>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-xs-12" ng-show="imagens.length == 0">
+                        Nenhuma imagem cadastrada.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 col-md-3" ng-repeat="imagem in imagens">
+                        <img src="../upload/{{imagem.arquivo}}" title="{{imagem.titulo}}" class="img-responsive">
+                        <button type="button" class="btn btn-danger btn-block" ng-click="excluirImagem(imagem.id)">Excluir</button>
+                        <hr>
                     </div>
                 </div>
             </div>
