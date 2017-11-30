@@ -229,9 +229,9 @@ $app->get('/trocastatus/:idnoticia/:novostatus', 'auth', function ($idnoticia, $
         
         $consulta = $db->con()->prepare('UPDATE noticia 
                                         SET 
-                                            noticiastatus = :NOTICIASTATUS
+                                            status = :NOTICIASTATUS
                                         WHERE 
-                                            idnoticia = :IDNOTICIA');
+                                            id = :IDNOTICIA');
     
         $consulta->bindParam(':NOTICIASTATUS', $novostatus);
         $consulta->bindParam(':IDNOTICIA', $idnoticia);
@@ -251,11 +251,11 @@ $app->get('/excluirNoticia/:idnoticia', 'auth', function ($idnoticia) use ($app,
         
         // excluir as imagens
         $consulta = $db->con()->prepare("SELECT
-                                            imagemarquivo
+                                            arquivo
                                         FROM
                                             imagem
                                         WHERE
-                                            noticia_idnoticia = :IDNOTICIA                                        
+                                            id_noticia = :IDNOTICIA                                        
                                         ");
         $consulta->bindParam(':IDNOTICIA', $idnoticia);
         $consulta->execute();
@@ -263,15 +263,15 @@ $app->get('/excluirNoticia/:idnoticia', 'auth', function ($idnoticia) use ($app,
         $imagens = $consulta->fetchAll(PDO::FETCH_ASSOC);
         
         foreach($imagens as $img){
-            @unlink('../upload/'.$img['imagemarquivo']);   
+            @unlink('../upload/'.$img['arquivo']);   
         }
     
         // excluir a notícia
-        $consulta = $db->con()->prepare("DELETE FROM imagem WHERE noticia_idnoticia = :IDNOTICIA");
+        $consulta = $db->con()->prepare("DELETE FROM imagem WHERE id_noticia = :IDNOTICIA");
         $consulta->bindParam(':IDNOTICIA', $idnoticia);
         $consulta->execute();
     
-        $consulta = $db->con()->prepare("DELETE FROM noticia WHERE idnoticia = :IDNOTICIA");
+        $consulta = $db->con()->prepare("DELETE FROM noticia WHERE id = :IDNOTICIA");
         $consulta->bindParam(':IDNOTICIA', $idnoticia);        
     
         if($consulta->execute()){

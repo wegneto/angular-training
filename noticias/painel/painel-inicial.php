@@ -34,6 +34,7 @@
                             <button type="button" class="btn btn-primary" ng-click="abreCadastroNoticia()">
                                 Cadastrar notícia
                             </button>
+                            <a href="../api/logout" class="btn btn-danger pull-right">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +94,7 @@
                                 <tr>
                                     <th>Data</th>
                                     <th>Título</th>
-                                    <th>Bloquear</th>
+                                    <th width="50">Status</th>
                                     <th width="150">-</th>
                                 </tr>
                             </thead>
@@ -102,8 +103,11 @@
                                     <td>{{noticia.data}}</td>
                                     <td>{{noticia.titulo}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-default">
-                                            Bloquear
+                                        <button type="button" class="btn btn-danger" ng-show="noticia.status == 1" ng-click="trocaStatus(noticia,2)">
+                                            <i class="glyphicon glyphicon-eye-open"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-success" ng-show="noticia.status != 1" ng-click="trocaStatus(noticia,1)">
+                                            <i class="glyphicon glyphicon-eye-close"></i>
                                         </button>
                                     </td>
                                     <td>
@@ -113,7 +117,7 @@
                                         <a href="gerenciar-imagens.php?idnoticia={{noticia.id}}" class="btn btn-primary" ng-click="getNoticia(noticia.id)">
                                             <span class="glyphicon glyphicon-upload"></span> 
                                         </a>
-                                        <button type="button" class="btn btn-danger">
+                                        <button type="button" class="btn btn-danger" ng-click="excluirNoticia(noticia.id)">
                                             <span class="glyphicon glyphicon-trash"></span> 
                                         </button>
                                     </td>

@@ -83,6 +83,31 @@ app.controller('painelInicialController', function($scope, $http) {
             });
     }
 
+    $scope.trocaStatus = function(noticia, status) {
+        $http.get("../api/trocastatus/" + noticia.id + "/" + status)
+            .success(function(data) {
+                noticia.status = status;
+            })
+            .error(function() {
+                alert('Erro de sistema.');
+            });
+    }
+
+    $scope.excluirNoticia = function(id) {
+        $http.get("../api/excluirNoticia/" + id)
+            .success(function(data) {
+                $scope.listarNoticias();
+                $.gritter.add({
+                        title: "Sucesso!",
+                        text: "Notícia excluida com sucesso",
+                        class_name: "gritter"
+                    });
+            })
+            .error(function() {
+                alert('Erro de sistema.');
+            });
+    }
+
     $scope.listarNoticias();
 
     console.log("### painelInicialController end ###");
