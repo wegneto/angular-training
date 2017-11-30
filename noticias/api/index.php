@@ -18,27 +18,25 @@ $app->get('/getNoticiaFrontend(/:idnoticia)', function ($idnoticia = NULL) use (
             $where = "";
             $limit = " LIMIT 8 ";
         } else {
-            $where = sprintf(' AND idnoticia = %s ', $idnoticia);   
+            $where = sprintf(' AND id = %s ', $idnoticia);   
             $limit = "";
         }
-    
         
-    
         $consulta = $db->con()->prepare("SELECT
-                                            idnoticia,
-                                            noticiatitulo,
-                                            noticiadescricao,
-                                            noticiatexto,
-                                            noticiastatus,
-                                            DATE_FORMAT(noticiadata,'%d/%m/%Y') AS datanoticia
+                                            id,
+                                            titulo,
+                                            descricao,
+                                            texto,
+                                            status,
+                                            DATE_FORMAT(data,'%d/%m/%Y') AS data
                                         FROM
                                             noticia
                                         WHERE
-                                            noticiastatus = 2
+                                            status = 2
                                         ".$where."
                                         ORDER BY
-                                            noticiadata DESC,
-                                            noticiatitulo ASC
+                                            data DESC,
+                                            titulo ASC
                                         ".$limit);
         $consulta->execute();
         $noticias = $consulta->fetchAll(PDO::FETCH_ASSOC);
@@ -50,18 +48,18 @@ $app->get('/getNoticiaFrontend(/:idnoticia)', function ($idnoticia = NULL) use (
             
             $noticias_array[$cont]['noticia']['dados'] = $not;
             
-            $noticias_array[$cont]['noticia']['dados']['noticiatexto'] = nl2br($noticias_array[$cont]['noticia']['dados']['noticiatexto']);
+            $noticias_array[$cont]['noticia']['dados']['texto'] = nl2br($noticias_array[$cont]['noticia']['dados']['texto']);
             
             $consulta = $db->con()->prepare("SELECT
-                                                idimagem,
-                                                imagemtitulo,
-                                                imagemarquivo
+                                                id,
+                                                titulo,
+                                                arquivo
                                             FROM
                                                 imagem
                                             WHERE
-                                                noticia_idnoticia = :IDNOTICIA
+                                                id_noticia = :IDNOTICIA
                                             ");
-            $consulta->bindParam(':IDNOTICIA', $not['idnoticia']);
+            $consulta->bindParam(':IDNOTICIA', $not['id']);
             $consulta->execute();
             $noticias_array[$cont]['noticia']['imagens'] = $consulta->fetchAll(PDO::FETCH_ASSOC);
             $cont++;
