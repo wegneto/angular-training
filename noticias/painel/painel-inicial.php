@@ -80,6 +80,7 @@
                         <div class="col-xs-9 col-xs-offset-3">
                             <button class="btn btn-primary" type="submit" ng-show="noticia.id == -1">Cadastrar</button>
                             <button class="btn btn-primary" type="submit" ng-show="noticia.id != -1">Alterar</button>
+                            <button class="btn btn-danger" type="button" ng-click="showCadastro=false">Cancelar</button>
                         </div>
                     </div>
                 </form>
@@ -89,7 +90,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <table class="table table-bordered table-striped table-hover">
+                        <table class="table table-bordered table-striped table-hover" ng-show="noticias.length!=0">
                             <thead>
                                 <tr>
                                     <th>Data</th>
@@ -124,6 +125,10 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <div class="alert alert-warning" ng-show="noticias.length==0 && !showCadastro">
+                            <strong>Nenhuma notícia cadastrada.</strong>
+                        </div>
                     </div>
                 </div>
             </div>
