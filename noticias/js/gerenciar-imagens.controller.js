@@ -76,6 +76,14 @@ app.controller('gerenciarImagensController', function($scope, $http, $location, 
         console.log("Falha ao enviar o arquivo.", fileItem);
     };
 
+    uploader.filters.push({
+        name: 'imageFilter',
+        fn: function(item, options) {
+            var type = '|' + item.type.slice(item.type.lastIndexOf('/')+ 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        }
+    });
+    
     console.log("### gerenciarImagensController end ###");
 });
 
