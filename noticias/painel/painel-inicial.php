@@ -27,12 +27,49 @@
         </nav>
         <div ng-controller="painelInicialController">
 
+            <div class="container" ng-show="chatUsuarios.length > 0">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Atendimentos</h2>
+                        <div class="col-xs-12">
+                            <div id="mostra_mensagens" class="alert alert-info" style="height: 350px; overflow: scroll; overflow-x:hidden;">
+                                <div class="well well-sm" ng-repeat="msg in chatUsuarios[usuarioAtivo].mensagens">
+                                    <p>De: {{msg.de}}</p>
+                                    <p>{{msg.msg}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-xs-12">
+                        <a href="#" ng-repeat="(key,u) in chatUsuarios" ng-click="setUsuarioAtivo(key)" class="btn btn-primary">
+                            {{u.usuario}}
+                        </a>
+                    </div>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" placeholder="mensagem" ng-model="novaMensagem" 
+                            ng-keyup="$event.keyCode == 13 ? enviarMensagem() : null">
+                    </div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-primary btn-block" type="button" ng-click="enviarMensagem()" ng-disabled="novaMensagem == ''">
+                            Enviar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="well well-sm">
                             <button type="button" class="btn btn-primary" ng-click="abreCadastroNoticia()">
                                 Cadastrar notícia
+                            </button>
+                            <button class="btn btn-success" type="button" ng-show="chat == true" ng-click="chatStatus()">
+                                Chat Online
+                            </button>
+                            <button class="btn btn-danger" type="button" ng-show="chat == false" ng-click="chatStatus()">
+                                Chat Offline
                             </button>
                             <a href="../api/logout" class="btn btn-danger pull-right">Logout</a>
                         </div>
@@ -137,6 +174,8 @@
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="../js/jquery/jquery.gritter.min.js"></script>
         <script src="../js/angular/angular.min.js"></script>
+        <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+        <script src="../js/angular/ng-socket-io.js"></script>
         <script src="../js/angular/ui-utils.min.js"></script>        
         <script src="../js/angular/loading-bar.min.js"></script>
         <script src="../js/painel-inicial.controller.js"></script>
