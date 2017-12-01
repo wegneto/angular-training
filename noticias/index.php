@@ -34,7 +34,7 @@
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    <a href="verNoticia.php?id={{item.noticia.dados.id}}">{{item.noticia.dados.titulo}}</a>
+                                    <a href="ver-noticia.php?id={{item.noticia.dados.id}}">{{item.noticia.dados.titulo}}</a>
                                     <span class="label label-primary">{{item.noticia.dados.data}}</span>                                
                                 </h4>
                                 <p>{{item.noticia.dados.descricao}}</p>
