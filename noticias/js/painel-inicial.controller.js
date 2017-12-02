@@ -16,7 +16,7 @@ app.controller('painelInicialController', function($scope, $http, socket) {
         socket.emit('setChatStatus', $scope.senha);
     };
 
-    socket.on('chatstatus', function(data){
+    socket.on('chatstatus', function(data) {
         $scope.chat = data.online;
     });
 

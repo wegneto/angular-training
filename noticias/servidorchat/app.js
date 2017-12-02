@@ -10,6 +10,8 @@ var senha = "123456";
 
 server.listen(3000);
 
+console.log('Server is up!');
+
 app.get('/', function(req, resp) {
     resp.sendfile(__dirname + "/public/index.html");
 });
