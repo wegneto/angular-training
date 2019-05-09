@@ -34,6 +34,8 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
     "postinstall": "npm run copy-libs",
     "update-deps": "npm update",
     "postupdate-deps": "npm run copy-libs",
