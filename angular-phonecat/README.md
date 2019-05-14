@@ -12,7 +12,7 @@ Each tagged commit is a separate lesson teaching a single aspect of the framewor
 The full tutorial can be found at https://docs.angularjs.org/tutorial.
 
 
-## Prerequisites  
+## Prerequisites
 
 ### Git
 

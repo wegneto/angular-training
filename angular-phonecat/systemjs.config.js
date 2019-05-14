@@ -10,9 +10,9 @@
         },
         // map tells the System loader where to look for things
         map: {
-            'ng-loader': '../src/systemjs-angular-loader.js',
+            'ng-loader': '/systemjs-angular-loader.js',
             // our app is within the app folder
-            'app': 'app',
+            'app': '/app',
 
             // angular bundles
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -35,7 +35,10 @@
                 defaultExtension: 'js',
                 meta: {
                     './*.js': {
-                        loader: 'systemjs-angular-loader.js'
+                        loader: '/systemjs-angular-loader.js'
+                    },
+                    '/systemjs-angular-loader.js': {
+                        loader: false
                     }
                 }
             },

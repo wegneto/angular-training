@@ -1,7 +1,7 @@
 'use strict';
-
 // Define the `phoneDetail` module
 angular.module('phoneDetail', [
-  'ngRoute',
-  'core.phone'
+    'ngRoute',
+    'core.phone'
 ]);
+//# sourceMappingURL=phone-detail.module.js.map
