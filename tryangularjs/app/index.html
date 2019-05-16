@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Try AngularJS</title>
     <script src="./lib/angular/angular.min.js"></script>
+    <script src="./lib/angular-resource/angular-resource.min.js"></script>
+    <script src="./lib/angular-route/angular-route.min.js"></script>
 
     <script src="./app.module.js"></script>
     <script src="./app.config.js"></script>
 
     <script src="./blog-list/blog-list.module.js"></script>
     <script src="./blog-list/blog-list.component.js"></script>
+
+    <script src="./blog-detail/blog-detail.module.js"></script>
+    <script src="./blog-detail/blog-detail.component.js"></script>
 
     <style>
         .new-class {
@@ -23,7 +28,7 @@
     </style>
 </head>
 <body>
-    <blog-list></blog-list>
-
+    <div ng-view>
+    </div>
 </body>
 </html>

@@ -1,4 +1,16 @@
-<div class=''>
-    <h1 class='new-class'>{{title}}</h1>
-    <button ng-click='someClickTest()'>Click me!</button>
-</div>
+<h1>
+    Blog list
+</h1>
+<ul ng-if="items.length > 0">
+    <li ng-repeat="item in items">
+        <a ng-href="#!blog/{{item.id}}">
+            {{item.title}}
+        </a>
+    </li>
+</ul>
+
+<a ng-href="#!about">
+    About
+</a>
+
+<span ng-if="item.length === 0">Posts coming soon</span>
