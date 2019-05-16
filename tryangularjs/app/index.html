@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Try AngularJS</title>
     <script src="./lib/angular/angular.min.js"></script>
+
     <script src="./app.module.js"></script>
     <script src="./app.config.js"></script>
+
+    <script src="./blog-list/blog-list.module.js"></script>
+    <script src="./blog-list/blog-list.component.js"></script>
+
     <style>
         .new-class {
             font-size: 72px;
@@ -18,11 +23,7 @@
     </style>
 </head>
 <body>
-    <h1 class="new-class" ng-class="{'other-class': name}">
-        Hello,
-        <span ng-if="name">{{name}}</span>
-        <span ng-if="!name">World</span>!
-    </h1>
-    <input type="text" ng-model="name"/>
+    <blog-list></blog-list>
+
 </body>
 </html>
