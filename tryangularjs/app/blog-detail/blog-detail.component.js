@@ -8,6 +8,7 @@ angular.module('blogDetail')
 
             Post.query(function (data) {
                 var found = false;
+
                 angular.forEach(data, function (post) {
                     if (post.id == $routeParams.id) {
                         $scope.post = post;

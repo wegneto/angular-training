@@ -3,8 +3,16 @@
 </h1>
 <ul ng-if="items.length > 0">
     <li ng-repeat="item in items">
-        <!--a ng-href="#!blog/{{item.id}}">{{item.title}}</a-->
-        <confirm-click message="Are you positive?" post="item"></confirm-click>
+
+        <a ng-href="#"  confirm-click="Are you positive?" confirmed-click="goToPost(item)">
+            {{item.title}}
+        </a>
+
+        <!--
+        <a href="#" ng-click="goToPost(item)">{{item.title}}</a>
+        -->
+
+        <!-- ng-href="#!blog/{{item.id}}"  confirm-click="Are you positive?" confirmed-click="/blog/{{item.id}}" confirm-click message="Are you positive?" post="item"></confirm-click-->
     </li>
 </ul>
 
