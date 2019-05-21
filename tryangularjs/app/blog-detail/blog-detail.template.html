@@ -6,14 +6,11 @@
 <input type="text" ng-model="query" placeholder="Filter comments">
 <ul>
     <li ng-repeat="comment in post.comments | filter: query">
-        {{comment.text}}
+        {{comment.text}} <a href="#" confirm-click="Delete?" confirmed-click="deleteComment(comment)">Delete</a>
     </li>
 </ul>
 
-<p style="color: red;">
-    {{reply.text}}
-</p>
-
+<p style="color: red;">{{reply.text}}</p>
 <form ng-submit="addReply()">
     <input type="hidden" ng-model="reply.id">
     <textarea ng-model="reply.text"></textarea>

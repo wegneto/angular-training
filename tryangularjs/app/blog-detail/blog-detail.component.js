@@ -3,7 +3,7 @@
 angular.module('blogDetail')
     .component('blogDetail', {
         templateUrl: "./blog-detail/blog-detail.template.html",
-        controller: function (Post, $http, $location, $routeParams, $scope) {
+        controller: function (Post, $http, $location, $routeParams, $scope, $timeout) {
             console.log("blogDetail started");
 
             Post.query(function (data) {
@@ -30,10 +30,16 @@ angular.module('blogDetail')
                 };
             }
 
+            $scope.deleteComment = function(comment) {
+                $scope.$apply(
+                    $scope.post.comments.splice(comment, 1)
+                );
+            };
+
             $scope.addReply = function () {
                 console.log($scope.reply);
                 $scope.post.comments.push($scope.reply);
                 resetReply();
-            }
+            };
         }
     });

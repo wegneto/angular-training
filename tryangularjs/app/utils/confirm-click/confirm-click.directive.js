@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('confirmClick')
-    .directive('confirmClick', function ($rootScope) {
+    .directive('confirmClick', function () {
         return {
             restrict: "A",
             link: function (scope, element, attr) {
