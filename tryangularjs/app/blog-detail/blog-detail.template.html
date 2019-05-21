@@ -1,3 +1,21 @@
 <h1>{{post.title}}</h1>
 
 <p>{{post.description}}</p>
+
+<h3>Comments</h3>
+<input type="text" ng-model="query" placeholder="Filter comments">
+<ul>
+    <li ng-repeat="comment in post.comments | filter: query">
+        {{comment.text}}
+    </li>
+</ul>
+
+<p style="color: red;">
+    {{reply.text}}
+</p>
+
+<form ng-submit="addReply()">
+    <input type="hidden" ng-model="reply.id">
+    <textarea ng-model="reply.text"></textarea>
+    <input type="submit"/>
+</form>

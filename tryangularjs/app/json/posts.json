@@ -2,7 +2,11 @@
   {
     "id": 1,
     "title": "some title 1",
-    "description": "this is the description"
+    "description": "this is the description",
+    "comments": [
+      {"id":  1, "text":  "comment 1"},
+      {"id":  2, "text":  "comment 2"}
+    ]
   },
   {
     "id": 2,
